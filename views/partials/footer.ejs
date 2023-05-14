@@ -1,0 +1,187 @@
+<style>
+    @font-face{
+      font-family: 'GantariTH';
+      src: url('./fonts/Gantari-Thin.ttf') format('truetype'), url('./fonts/Gantari-Thin.otf') format('opentype');
+    }
+
+    .redes{
+        display: flex;
+        justify-content: center;
+    }
+    .quadrede{
+        width: 38px;
+        height: 38px;
+        background-color: #373737;
+        border-bottom: #8D110ABF 2.5px solid;
+        text-align: center;
+        position: relative;
+    }
+    .quadrede::before{
+        content: " ";
+        width: 100%;
+        height: 0;
+        position: absolute;
+        background-color: #8D110ABF;
+        bottom: 0;
+        left: 0;
+        transition: height .3s;
+    }
+    .quadrede:hover::before{
+        height: 100%;
+    }
+    .in{
+        margin-right: 30px;
+    }
+    .insta, .whats{
+        width: 25px;
+        margin-top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .iconfooter{
+        width: 33px;
+        height: 33px;
+    }
+
+    .publi{
+        margin-top: 30px;
+    }
+
+    a .textfooter{
+        text-decoration: none;
+    }
+
+* {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    letter-spacing: 1px;
+}
+
+footer {
+    width: 100%;
+    color: #F5F2EB;
+    font-size: 12px;
+}
+
+.textfooter{
+    color: #F5F2EB;
+    font-family: GantariTH;
+    text-decoration: none;
+}
+
+#footer_content {
+    background-color: #181717;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 3rem 3.5rem;
+}
+
+.footer-list {
+    display: flex;
+    flex-direction: row;
+    gap: 0.75rem;
+    list-style: none;
+    margin: 0 30px;
+}
+
+#footer_copyright {
+    display: flex;
+    justify-content: center;
+    background-color: #111010;
+    font-size: 0.9rem;
+    padding: 1.5rem;
+}
+
+@media screen and (max-width: 1100px) {
+    #footer_content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+}
+
+@media screen and (max-width: 732px) {
+    #footer_content {
+        grid-template-columns: repeat(1, 1fr);
+        padding: 3rem 2rem;
+    }
+    .footer-list{
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    footer{
+        font-size: 10px;
+    }
+    #footer_copyright{
+        font-size: 10px;
+    }
+    #footer_content{
+        padding: 3rem 0rem;
+    }
+    .footer-list {
+        margin: 0 10px;
+    }
+    .publi{
+        margin-left: 10px;
+    }
+}
+
+</style>
+
+
+<div id="footer_content">
+
+    <div class="footer-list">
+        <img class="iconfooter" src="./images/icons/maps.png" alt="endereço">
+        <p class="textfooter">
+            Rua 151, 46 - Conjunto Ceará II
+            <br>
+            Fortaleza - CE, 60530-250
+        </p>
+    </div>
+
+    <div class="footer-list">
+        <img class="iconfooter" src="./images/icons/contatos.png" alt="horários">
+        <p class="textfooter">
+            SEG - SÁB : 10:00 - 22:00
+            <br>
+            DOM : 10:00 - 13:00
+        </p>
+    </div>
+
+    <div class="footer-list">
+        <img class="iconfooter" src="./images/icons/celular.png" alt="contatos">
+        <p class="textfooter">
+            JonasRocha@exemplo.com
+            <br>
+            (85) 91111 - 1111
+        </p>
+    </div>
+
+    <div>
+      <div class="redes">
+        <a class="quadrede in" href="https://www.instagram.com/barbearia_jonasrocha/" >
+          <img class="insta" src="./images/icons/instagram.png" alt="instagram">
+        </a>
+        <a class="quadrede" href="https://api.whatsapp.com/send?l=pt-BR&phone=5585996896238&text=Oi%20eu%20vim%20do%20Instagram%20%C3%A9%20gostaria%20de%20agendar%20um%20hor%C3%A1rio!">
+          <img class="whats" src="./images/icons/whatsapp.png" alt="whatsapp">
+        </a>
+      </div>
+    </div>
+
+    <div class="publi">
+        <p class="textfooter">icons por <a class="textfooter" href="https://icons8.com/">icons8</a> </p>
+    </div>
+  
+</div>
+
+<div class="textfooter" id="footer_copyright">
+    &#169
+    2023 all rights reserved
+</div>
