@@ -1,11 +1,25 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <style>
+      .imageHM {
+        width: 100%;
+        height: auto;
+        position: absolute;
+      }
+
+    </style>
+
+    <picture>
+      <source media="(max-width: 900px)" srcset="./images/FundoHomeP.png">
+      <img class="imageHM" src="./images/FundoHome.png">
+    </picture>
+      
+
+    <%- include('./partials/header') %>
+
+    
+
+    <footer>
+      <%- include('./partials/footer') %>
+    </footer>
+
   </body>
 </html>
