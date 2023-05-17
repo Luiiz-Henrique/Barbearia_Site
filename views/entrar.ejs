@@ -3,8 +3,8 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-  }
-  /*footer{
+  }/*
+  footer{
     position: fixed;
     left: 0;
     bottom: 0;
@@ -14,17 +14,29 @@
     background-color: #F5F2EB;
   }
 
-  form {
+  .maindoLogin{
     margin: 2em 0;
+  }
+
+  .title{
+    font-size: 40px;
+    color: #1D1C1C;
+    font-family: GantariSB;
+  }
+
+  form {
+    margin: 2em auto;
     width: 450px;
-    margin-left: 50%;
-    transform: translateX(-50%);
+    font-family: GantariSB;
+    /*margin-left: 50%;
+    transform: translateX(-50%);*/
+    
   } 
  
 .input-text {
   display: flex;
   flex-flow: column-reverse;
-  margin-bottom: 1em;
+  /*margin-bottom: 1em;*/
 }
 
 label, input {
@@ -37,7 +49,6 @@ input {
   height: 60px;
   font-size: 24px;
   border: 2.5px solid #1D1C1C;
-  font-family: GantariSB;
   /*-webkit-appearance: none;*/
   border-radius: 5px;
   padding: 0 20px;
@@ -53,10 +64,10 @@ input:focus {
 
 label {
   font-size: 24px;
-  letter-spacing: 0.05em;
+  /*letter-spacing: 0.05em;*/
   margin-left: 20px;
   background-color: #F5F2EB;
-  width: 70px;
+  width: 75px;
 }
 
 input:placeholder-shown + label {
@@ -66,7 +77,7 @@ input:placeholder-shown + label {
   overflow: hidden;
   text-overflow: ellipsis;
   transform-origin: left top;
-  transform: translate(0, 2.7rem) scale(1);
+  transform: translate(0, 2.85rem) scale(1);
 }
 
 ::-webkit-input-placeholder {
@@ -79,51 +90,135 @@ input:focus::-webkit-input-placeholder {
 }
 
 input:not(:placeholder-shown) + label{
-  transform: translate(0, 10px) scale(1);
+  transform: translate(0, 12px) scale(1);
   cursor: pointer;
   font-size: 20px;
 }
 
 input:focus + label {
-  transform: translate(0, 10px) scale(1);
+  transform: translate(0, 12px) scale(1);
   cursor: pointer;
   color: #C51006;
   font-size: 20px;
 }
 
-@media (max-width: 460px) {
+@media (max-width: 470px) {
   form, input {
-    width: 97vw;
+    width: 90vw;
   }
+}
+
+.enfeite {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bigodin{
+  width: 54px;
+  height: 27px;
+  margin: 0 20px;
+}
+
+.linha{
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(29,28,28,1) 20%, rgba(29,28,28,1) 80%, rgba(255,255,255,0) 100%);
+}
+
+.enfeite{
+  margin-bottom: 13px;
+}
+
+.buttonL{
+  align-items: center;
+  color: #F5F2EB;
+  font-size: 24px;
+  width: 100%;
+  height: 40px;
+  background-color: #C51006;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+.buttonL:hover{
+  background-color: #EE1408;
+}
+
+.linkAL{
+  display: flex;
+  justify-content: end;
+  margin-bottom: 20px;
+}
+
+.linksLogin{
+  font-size: 16px;
+  color: #C51006;
+  text-decoration: underline;
+}
+
+.paragrafo{
+  margin-top: 10px;
+}
+
+.mother{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
 }
 
 </style>
 
+<div class="mother">
+
 <%- include('./partials/header') %>
 
-<h1 class="title" >ENTRAR</h1>
+<main class="maindoLogin">
+
+  <h1 class="title" >ENTRAR</h1>
+
+  <form action="">
 
     <div class="enfeite">
-      <div class="linha"></div>
-      <img src="./images/bigodin.png" alt="">
-      <div class="linha"></div>
+          <div class="linha"></div>
+          <img class="bigodin" src="/images/bigodin.png" alt="">
+          <div class="linha"></div>
+        </div>
+
+    <div class="input-text">
+      <input type="email" name="email" id="email" placeholder="Digite seu email" autocomplete="off" required>
+      <label for="email">Email</label>
+    </div>
+    
+    <div class="input-text">
+      <input type="password" name="password" id="password" placeholder="Digite sua senha" autocomplete="off" required>
+      <label for="password">Senha</label>
     </div>
 
-<form action="">
-  <div class="input-text">
-    <input type="email" name="email" id="email" placeholder="Digite seu email" autocomplete="off" required>
-    <label for="email">Email</label>
-  </div>
-  
-  <div class="input-text">
-    <input type="password" name="password" id="password" placeholder="Digite sua senha" autocomplete="off" required>
-    <label for="password">Senha</label>
-  </div>
+    <button class="buttonL" type="submit">ENTRAR</button>
+
+    <div class="linkAL">
+      <a class="linksLogin" href="#" >Esqueceu a senha?</a>
+    </div>
+
+    <div class="linha two"></div>
+
+    <p class="paragrafo">Novo na Barbearia? <a class="linksLogin" href="/perfil/criar-conta">CASDASTRE-SE</a></p>
+    
   </form>
+
+</main>
+
 
 <footer>
   <%- include('./partials/footer') %>
 </footer>
+
+</div>
 
 </body>
 </html>
