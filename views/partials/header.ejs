@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
+    /*body {
+      background-color: #F5F2EB;
+    }*/
     @font-face {
             font-family: 'GantariSB';
             src: url('./fonts/Gantari-SemiBold.ttf') format('truetype'), url('./fonts/Gantari-SemiBold.otf') format('opentype');
@@ -22,6 +25,15 @@
         color: #F5F2EB;
         text-decoration: none;
         transition: 0.3s;
+      }
+      @media (max-width: 410px) {
+        .listHeader {
+          font-size: 12px;
+        }
+        .aaa {
+          text-align: center;
+        }
+
       }
       
 .linksline {
@@ -64,9 +76,14 @@ nav {
 .logo {
   width: 6vw;
 }
-@media (max-width: 800px) {
+@media (max-width: 660px) {
   .logo{
     width: 10vw;
+  }
+}
+@media (max-width: 350px) {
+  .logo{
+    width: 14vw;
   }
 }
 
@@ -145,6 +162,11 @@ nav {
 .mobile-menu.active .line3 {
   transform: rotate(45deg) translate(-5px, -7px);
 }
+.active{
+  color: #C51006;
+  background-position: 0% 27px;
+}
+
   </style>
 
 </head>
@@ -161,11 +183,11 @@ nav {
       </div>
       <ul class="nav-list">
         <li><a class="linksline listHeader" href="/">INÍCIO</a></li>
-        <li><a class="linksline listHeader" href="#">SOBRE</a></li>
-        <li><a class="linksline listHeader" href="#">SERVIÇOS</a></li>
-        <li><a class="linksline listHeader" href="#">CONTATO</a></li>
-        <li><a class="linksline listHeader" href="#">AGENDE SEU HORÁRIO</a></li>
-        <li><a class="button listHeader" href="#">ENTRAR</a></li>
+        <li><a class="linksline listHeader" href="/sobre">SOBRE</a></li>
+        <li><a class="linksline listHeader" href="/servicos">SERVIÇOS</a></li>
+        <li><a class="linksline listHeader" href="/contatos">CONTATO</a></li>
+        <li class="aaa"><a class="linksline listHeader" href="/agende-seu-horario">AGENDE SEU HORÁRIO</a></li>
+        <li><a class="button listHeader" href="/perfil/entrar">ENTRAR</a></li>
       </ul>
     </nav>
   </header>
@@ -214,5 +236,14 @@ nav {
       ".nav-list li",
     );
     mobileNavbar.init();
+
+    const activepage = window.location.pathname;
+    const navlinks = document.querySelectorAll('.linksline');
+    navlinks.forEach(link => {
+      const activepagePath = new URL (link.href).pathname;
+      if(activepage === activepagePath) {
+        link.classList.add('active');
+      }
+    })
 
   </script>
