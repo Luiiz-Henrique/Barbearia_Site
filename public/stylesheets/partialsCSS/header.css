@@ -192,3 +192,10 @@ nav {
         background-position: -57.8% 21px;
     }
 }
+
+.mother{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+}
