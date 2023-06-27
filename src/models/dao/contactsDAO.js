@@ -1,7 +1,26 @@
 class ContactsDAO {
 
+    static async findContactsByEmail(client, email){
+        try{
+            await client.connect()
+            const result = await client
+                .db('BD_Barbearia')
+                .collection('cadastro')
+                .find({email: email})
+                .project({id: 0});
+            if (result) {
+                return result;
+            } else {
+                return false;
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
     static async insertContact(client, contact) {
       try {
+        await client.connect()
         const result = await client
           .db('BD_Barbearia')
           .collection('cadastro')
@@ -9,9 +28,24 @@ class ContactsDAO {
         return result;
       } catch (err) {
         console.log(err);
-      } finally {
-        await client.close()
       }
+    }
+
+    static async login(client, email, password){
+        try {
+            await client.connect()
+            const result = await client
+                .db('BD_Barbearia')
+                .collection('cadastro')
+                .findOne({email: email, password: password})
+            if (result) {
+                return result;
+            } else {
+                return false;
+            }
+        } finally {
+            await client.close()
+        }
     }
   
     static async deleteContactByName(client, name) {
@@ -23,8 +57,6 @@ class ContactsDAO {
         return result;
       } catch (err) {
         console.log(err);
-      } finally {
-        await client.close()
       }
     }
   
@@ -38,8 +70,6 @@ class ContactsDAO {
         return await results.toArray();
       } catch (err) {
         console.log(err);
-      } finally {
-        await client.close()
       }
     }
   

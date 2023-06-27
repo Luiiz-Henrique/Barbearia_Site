@@ -10,33 +10,48 @@ require('dotenv').config()
 const uri = process.env['URI']
 const client = new MongoClient(uri)
 
-
+const getHashedPassword = (password) => {
+    const sha256 = crypto.createHash('sha256');
+    const hash = sha256.update(password).digest('base64');
+    return hash
+}
 
 /* GET home page. */
 router.post('/', async function(req, res, next) {
-  const form = req.body;
-  const form_data = 
-  {
-    name: form.name,
-    phone: form.phone,
-    email: form.email,
-    passwords: {
-        password: form.password,
-        Conpassword: form.Conpassword
+    const form = req.body;
+    const form_data = 
+    {
+        name: form.name,
+        phone: form.phone,
+        email: form.email,
+        passwords: {
+            password: form.password,
+            conPassword: form.conPassword
+        }
     }
-  }
-  if (password === Conpassword){
+    if (form_data.passwords.password === form_data.passwords.conPassword){
+        contactsDAO.findContactsByEmail(client, form_data.email).then((result) => {
+            if (result){ //DANDO B.O!!!!
+                console.log(form_data.email, form_data.name, form_data.phone, form_data.passwords.password)
+                res.render('criar-conta');
+            } else {
+                const passwordCodificado = getHashedPassword(form_data.passwords.password)
 
+                contactsDAO.insertContact(client, {
+                    name: form.name,
+                    phone: form.phone,
+                    email: form.email,
+                    password: passwordCodificado
+                });
+
+                res.render('entrar')
+            }
+        });
+  } else {
+    console.log("senha")
+    res.render('criar-conta')
   }
-  try{
-    await client.connect()
-    const result = await contactsDAO.insertContact(client, form_data);
-    res.render('entrar')
-  } catch (err){
-    res.send(err)
-  } finally {
-    await client.close()
-  }
+  
 });
 
 module.exports = router;

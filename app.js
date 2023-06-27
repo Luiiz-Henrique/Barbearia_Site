@@ -30,11 +30,11 @@ app.use('/', indexRouter);
 app.use('/perfil', usersRouter);
 app.use('/perfil/entrar', signinRouter)
 app.use('/perfil/criar-conta', signupRouter)
+app.use('/perfil/criar-conta/create', createRouter)
 app.use('/sobre', aboutRouter)
 app.use('/servicos', servicesRouter)
 app.use('/contatos', contactsRouter)
 app.use('/agende-seu-horario', scheduleRouter)
-app.use('/perfil/criar-conta/create', createRouter)
 
 
 // catch 404 and forward to error handler
