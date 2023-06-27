@@ -8,6 +8,7 @@ var indexRouter = require('./routes/inicio');
 var usersRouter = require('./routes/perfil');
 var signinRouter = require('./routes/entrar');
 var signupRouter = require('./routes/criar-conta');
+var createRouter = require('./routes/create');
 var aboutRouter = require('./routes/sobre');
 var servicesRouter = require('./routes/servicos');
 var contactsRouter = require('./routes/contatos');
@@ -33,6 +34,7 @@ app.use('/sobre', aboutRouter)
 app.use('/servicos', servicesRouter)
 app.use('/contatos', contactsRouter)
 app.use('/agende-seu-horario', scheduleRouter)
+app.use('/perfil/criar-conta/create', createRouter)
 
 
 // catch 404 and forward to error handler
