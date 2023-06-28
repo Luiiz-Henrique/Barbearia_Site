@@ -33,6 +33,7 @@ router.post('/', function(req, res) {
             const authToken = generateAuthToken();
             authTokens[authToken] = user;
             res.cookie('AuthToken', authToken);
+            console.log(authToken)
             res.redirect('/');
             console.log("no user")
             console.log(user)
@@ -42,5 +43,12 @@ router.post('/', function(req, res) {
         }
     })
 });
+
+router.use((req, res, next) => {
+    const authToken = req.cookies['AuthToken'];
+    req.user = authTokens[authToken];
+    console.log("isso aq foi alguma vez usado?")
+    next();
+  })
 
 module.exports = router;
