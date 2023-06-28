@@ -7,6 +7,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/inicio');
 var usersRouter = require('./routes/perfil');
 var signinRouter = require('./routes/entrar');
+var acessRouter = require('./routes/acess');
 var signupRouter = require('./routes/criar-conta');
 var createRouter = require('./routes/create');
 var aboutRouter = require('./routes/sobre');
@@ -28,13 +29,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/perfil', usersRouter);
-app.use('/perfil/entrar', signinRouter)
-app.use('/perfil/criar-conta', signupRouter)
-app.use('/perfil/criar-conta/create', createRouter)
-app.use('/sobre', aboutRouter)
-app.use('/servicos', servicesRouter)
-app.use('/contatos', contactsRouter)
-app.use('/agende-seu-horario', scheduleRouter)
+app.use('/perfil/entrar', signinRouter);
+app.use('/perfil/entrar/acess', acessRouter);
+app.use('/perfil/criar-conta', signupRouter);
+app.use('/perfil/criar-conta/create', createRouter);
+app.use('/sobre', aboutRouter);
+app.use('/servicos', servicesRouter);
+app.use('/contatos', contactsRouter);
+app.use('/agende-seu-horario', scheduleRouter);
 
 
 // catch 404 and forward to error handler
@@ -52,5 +54,12 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+app.use((req, res, next) => {
+  const authToken = req.cookies['AuthToken'];
+  req.user = authTokens[authToken];
+  console.log("isso aq foi alguma vez usado?")
+  next();
+})
 
 module.exports = app;

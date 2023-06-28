@@ -30,11 +30,8 @@ router.post('/', async function(req, res, next) {
         }
     }
     if (form_data.passwords.password === form_data.passwords.conPassword){
-        contactsDAO.findContactsByEmail(client, form_data.email).then((result) => {
-            if (result){ //DANDO B.O!!!!
-                console.log(form_data.email, form_data.name, form_data.phone, form_data.passwords.password)
-                res.render('criar-conta');
-            } else {
+        const result = await contactsDAO.findContactsByEmail(client, form_data.email)
+            if (result.length == 0){ //DANDO B.O!!!!
                 const passwordCodificado = getHashedPassword(form_data.passwords.password)
 
                 contactsDAO.insertContact(client, {
@@ -45,8 +42,9 @@ router.post('/', async function(req, res, next) {
                 });
 
                 res.render('entrar')
+            } else {
+                res.render('criar-conta');
             }
-        });
   } else {
     console.log("senha")
     res.render('criar-conta')
