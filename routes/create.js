@@ -31,7 +31,7 @@ router.post('/', async function(req, res, next) {
     }
     if (form_data.passwords.password === form_data.passwords.conPassword){
         const result = await contactsDAO.findContactsByEmail(client, form_data.email)
-            if (result.length == 0){ //DANDO B.O!!!!
+            if (result.length == 0){
                 const passwordCodificado = getHashedPassword(form_data.passwords.password)
 
                 contactsDAO.insertContact(client, {

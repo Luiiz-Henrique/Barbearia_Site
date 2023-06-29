@@ -14,6 +14,7 @@ var aboutRouter = require('./routes/sobre');
 var servicesRouter = require('./routes/servicos');
 var contactsRouter = require('./routes/contatos');
 var scheduleRouter = require('./routes/agende-seu-horario');
+var logoutRouter = require('./routes/logout')
 
 var app = express();
 
@@ -35,6 +36,7 @@ app.use('/perfil/criar-conta', signupRouter);
 app.use('/perfil/criar-conta/create', createRouter);
 app.use('/sobre', aboutRouter);
 app.use('/servicos', servicesRouter);
+app.use('/logout', logoutRouter);
 app.use('/contatos', contactsRouter);
 app.use('/agende-seu-horario', scheduleRouter);
 

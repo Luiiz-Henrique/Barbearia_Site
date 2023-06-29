@@ -38,11 +38,8 @@ class ContactsDAO {
               .collection('cadastro')
               .findOne({email: email, password: password})
           if (result) {
-              console.log("result do DAO")
-              console.log(result)
               return result;
           } else {
-              console.log('else do login')
               return false;
           }
       } finally {

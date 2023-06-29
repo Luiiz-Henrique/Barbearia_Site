@@ -5,6 +5,7 @@ var contactsDAO = require('../src/models/dao/contactsDAO')
 const { name } = require('ejs');
 const crypto = require('crypto');
 const { login } = require('../src/models/dao/contactsDAO');
+//var cookieParser = require('cookie-parser');
 
 require('dotenv').config()
 
@@ -23,32 +24,31 @@ const generateAuthToken = () => {
 
 const authTokens = {};
 
+//router.use(cookieParser())
+
 /* GET home page. */
 router.post('/', function(req, res) {
     const {email, password} = req.body;
     const hashedPassword = getHashedPassword(password)
 
-    login(client, email, hashedPassword).then((user) => {
+    contactsDAO.login(client, email, hashedPassword).then( (user) => {
         if (user) {
             const authToken = generateAuthToken();
             authTokens[authToken] = user;
+            console.log("a lista de tokens  :")
+            console.log(authTokens)
             res.cookie('AuthToken', authToken);
-            console.log(authToken)
             res.redirect('/');
-            console.log("no user")
+            console.log("\n\n\n\n\nlogado com sucesso")
+            console.log('o user: ')
             console.log(user)
+            console.log('os tokens: ')
+            console.log(authTokens)
         } else {
             res.render('entrar')
-            console.log('deu ruim')
+            console.log("email ou senha errado")
         }
     })
 });
-
-router.use((req, res, next) => {
-    const authToken = req.cookies['AuthToken'];
-    req.user = authTokens[authToken];
-    console.log("isso aq foi alguma vez usado?")
-    next();
-  })
 
 module.exports = router;
